@@ -64,9 +64,9 @@ main = do
 -- Dzen --
 myDzenFont = "Pragmata:pixelsize=12"
 myDzenEvents = "-e 'button3='"
-myWorkspaceBar = "dzen2 -p -ta l -fn '" ++ myDzenFont ++ "' -w 1100 -bg black "
+myWorkspaceBar = "dzen2 -p -ta l -fn '" ++ myDzenFont ++ "' -w 1100 -bg '#404040' -fg '#000000' "
                  ++ myDzenEvents 
-myConkyBar = "dzen2 -p -ta r -fn '" ++ myDzenFont ++ "' -x 1100 -w 820 -bg black " 
+myConkyBar = "dzen2 -p -ta r -fn '" ++ myDzenFont ++ "' -x 1100 -w 820 -bg '#404040' -fg '#000000' " 
              ++ myDzenEvents
 
 -------------------------------------------------------------------------------
@@ -112,23 +112,26 @@ hiddenBG = "#CAA800"
 hiddenNoWinFG = "#000000"
 hiddenNoWinBG = "#606060"
 
-titleFG = "#c99e1c"
-titleBG = "#000000"
+titleFG = "#C0BA41"
+titleBG = "#404040"
 
 layoutFG = "#000000"
-layoutBG = "#98BAB9"
+layoutBG = "#77C853"
 
 separatorColor = "#444444"
-urgentWsColor = "#FF0000"
+
+urgentFG = "#000000"
+urgentBG = "#FF0000"
 
 customPP :: PP
 customPP = defaultPP { ppCurrent = wrap ("^bg("++ currentBG ++")^fg(" ++ currentFG++ ")")
                                    "^fg()^bg()"
-                     , ppTitle = wrap (" ^bg("++ titleBG ++")^fg(" ++ titleFG++ ")")
-                                 "^fg()^bg() " . shorten 80
+                     , ppTitle = wrap (" ^fg(" ++ titleFG++ ")")
+                                 "^fg() " . shorten 80
                      , ppSep = "^bg(" ++ separatorColor ++ ")^r(1,15)^bg()" 
                      , ppWsSep = "^bg(" ++ separatorColor ++ ")^r(2,15)^bg()" 
-                     , ppUrgent = wrap ("^bg(" ++ urgentWsColor ++ ")") "^bg()"
+                     , ppUrgent = wrap ("^bg("++ urgentBG ++")^fg(" ++ urgentFG++ ")")
+                                   "^fg()^bg()" . dzenStrip
                      , ppHidden = wrap ("^bg("++ hiddenBG ++")^fg(" ++ hiddenFG++ ")")
                                   "^fg()^bg()"
                      , ppHiddenNoWindows = wrap ("^bg("++ hiddenNoWinBG ++")^fg("
@@ -178,7 +181,7 @@ customLayout = onWorkspace (getWorkspaceId "main") mainL
     where tiled = named "RT" $ ResizableTall 1 (1/100) (1/2) []
           rft = named "RFT" $ (reflectHoriz tiled)
           threeCol = named "3C" $ ThreeCol 1 (1/100) (1/2)
-          combo = named "CB" $ combineTwo tiled simpleTabbedBottom tiled 
+          combo = named "CB" $ combineTwo tiled simpleTabbedBottom (Mirror tiled)
           stb = named "STB" $ simpleTabbedBottom
           sFloat = named "SF" $ simplestFloat
           mt = named "MT" $ Mirror tiled

@@ -115,13 +115,15 @@ hiddenNoWinBG = "#606060"
 titleFG = "#c99e1c"
 titleBG = "#000000"
 
+layoutFG = "#000000"
+layoutBG = "#98BAB9"
+
 separatorColor = "#444444"
 urgentWsColor = "#FF0000"
 
 customPP :: PP
 customPP = defaultPP { ppCurrent = wrap ("^bg("++ currentBG ++")^fg(" ++ currentFG++ ")")
                                    "^fg()^bg()"
-                     -- dzenColor currentColor ""
                      , ppTitle = wrap (" ^bg("++ titleBG ++")^fg(" ++ titleFG++ ")")
                                  "^fg()^bg() " . shorten 80
                      , ppSep = "^bg(" ++ separatorColor ++ ")^r(1,15)^bg()" 
@@ -132,6 +134,9 @@ customPP = defaultPP { ppCurrent = wrap ("^bg("++ currentBG ++")^fg(" ++ current
                      , ppHiddenNoWindows = wrap ("^bg("++ hiddenNoWinBG ++")^fg("
                                                  ++ hiddenNoWinFG ++ ")")
                                            "^fg()^bg()"
+                     , ppLayout = wrap ("^bg("++ layoutBG ++") ^fg("
+                                        ++ layoutFG ++ ")")
+                                  "^fg() ^bg()"
                      }
 
 -- borders

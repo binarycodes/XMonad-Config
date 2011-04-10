@@ -39,6 +39,7 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.Combo
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.Named
+import XMonad.Layout.TwoPane
 
 -------------------------------------------------------------------------------
 -- Main --
@@ -90,7 +91,7 @@ myManageHook = composeAll $ concat
                    chat = [ "Pidgin","Qq" ]
                    float = [ "Gimp" , "Blender" ]
                    mail = [ "Lanikai", "Liferea-bin" ]
-                   down = [ "Transmission", "Deluge" ]
+                   down = [ "Transmission", "Deluge", "Download" ]
                    hide = [ ]
 
 
@@ -177,14 +178,16 @@ customLayout = onWorkspace (getWorkspaceId "main") mainL
              $ onWorkspace (getWorkspaceId "chat") chatL
              $ onWorkspace (getWorkspaceId "code") codeL
              $ onWorkspace (getWorkspaceId "float") floatL
+             $ onWorkspace (getWorkspaceId "office") officeL
              $ restL
     where tiled = named "RT" $ ResizableTall 1 (1/100) (1/2) []
           rft = named "RFT" $ (reflectHoriz tiled)
           threeCol = named "3C" $ ThreeCol 1 (1/100) (1/2)
-          combo = named "CB" $ combineTwo tiled simpleTabbedBottom (Mirror tiled)
-          stb = named "STB" $ simpleTabbedBottom
+          combo = named "CB" $ combineTwo tp mt tb
+          tb = named "TB" $ tabbedBottom shrinkText myTheme
           sFloat = named "SF" $ simplestFloat
           mt = named "MT" $ Mirror tiled
+          tp = named "TP" $ TwoPane (3/100) (1/2)
 
           im = named "IM" $ withIM ratio pidginRoster $ reflectHoriz $ withIM
                skypeRatio skypeRoster (Grid)
@@ -199,12 +202,27 @@ customLayout = onWorkspace (getWorkspaceId "main") mainL
           applyToAllLayouts layoutList = avoidStruts $ smartBorders $
                                          windowNavigation layoutList 
           mainL = applyToAllLayouts (combo ||| tiled ||| rft ||| Grid ||| mt ||| Full)
-          webL  = applyToAllLayouts (Full ||| mt ||| tiled ||| stb)
-          docL  = applyToAllLayouts (mt ||| tiled ||| Full ||| stb)
+          webL  = applyToAllLayouts (Full ||| mt ||| tiled ||| tb)
+          docL  = applyToAllLayouts (mt ||| tiled ||| Full ||| tb)
           codeL = applyToAllLayouts (combo ||| tiled ||| mt ||| Full ||| Grid)
           chatL = applyToAllLayouts (im ||| mt ||| threeCol ||| tiled)
           floatL = applyToAllLayouts (sFloat ||| mt ||| threeCol ||| tiled)
+          officeL = applyToAllLayouts (tp ||| tiled ||| rft ||| mt)
           restL = applyToAllLayouts (tiled ||| Full ||| Grid ||| mt)
+
+          --- My Theme For Tabbed layout
+          myTheme = defaultTheme { decoHeight = 18
+                                 , fontName = "xft:Pragmata:pixelsize=12"
+                                 , activeColor = "#799500"
+                                 , activeBorderColor = "#799500"
+                                 , activeTextColor = "#000000"
+                                 , inactiveBorderColor = "#606060"
+                                 , inactiveColor = "#606060"
+                                 , inactiveTextColor = "#000000"
+                                 , urgentColor = "#ff0000"
+                                 , urgentBorderColor = "#ff0000"
+                                 , urgentTextColor = "#000000"
+                                 }
 
 -------------------------------------------------------------------------------
 -- Terminal --
@@ -286,6 +304,13 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_h     ), sendMessage MirrorShrink)
     , ((modMask .|. shiftMask, xK_l     ), sendMessage MirrorExpand)
 
+    -- swap...
+    , ((modMask .|. controlMask, xK_Right), sendMessage $ Swap R)
+    , ((modMask .|. controlMask, xK_Left ), sendMessage $ Swap L)
+    , ((modMask .|. controlMask, xK_Up   ), sendMessage $ Swap U)
+    , ((modMask .|. controlMask, xK_Down ), sendMessage $ Swap D)
+      
+    -- move
     , ((modMask .|. shiftMask, xK_Right), sendMessage $ Move R)
     , ((modMask .|. shiftMask, xK_Left ), sendMessage $ Move L)
     , ((modMask .|. shiftMask, xK_Up   ), sendMessage $ Move U)

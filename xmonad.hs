@@ -113,7 +113,7 @@ hiddenBG = "#CAA800"
 hiddenNoWinFG = "#000000"
 hiddenNoWinBG = "#606060"
 
-titleFG = "#C0BA41"
+titleFG = "#FFA662"
 titleBG = "#404040"
 
 layoutFG = "#000000"
@@ -189,8 +189,8 @@ customLayout = onWorkspace (getWorkspaceId "main") mainL
           mt = named "MT" $ Mirror tiled
           tp = named "TP" $ TwoPane (3/100) (1/2)
 
-          im = named "IM" $ withIM ratio pidginRoster $ reflectHoriz $ withIM
-               skypeRatio skypeRoster (Grid)
+          im layoutL = named "IM" $ withIM ratio pidginRoster $ reflectHoriz $ withIM
+               skypeRatio skypeRoster layoutL
           ratio = (1%9)
           skypeRatio = (1%8)
           pidginRoster = And (ClassName "Pidgin") (Role "buddy_list")
@@ -205,7 +205,7 @@ customLayout = onWorkspace (getWorkspaceId "main") mainL
           webL  = applyToAllLayouts (Full ||| mt ||| tiled ||| tb)
           docL  = applyToAllLayouts (mt ||| tiled ||| Full ||| tb)
           codeL = applyToAllLayouts (combo ||| tiled ||| mt ||| Full ||| Grid)
-          chatL = applyToAllLayouts (im ||| mt ||| threeCol ||| tiled)
+          chatL = applyToAllLayouts $ im (Grid ||| mt ||| threeCol ||| tiled)
           floatL = applyToAllLayouts (sFloat ||| mt ||| threeCol ||| tiled)
           officeL = applyToAllLayouts (tp ||| tiled ||| rft ||| mt)
           restL = applyToAllLayouts (tiled ||| Full ||| Grid ||| mt)
@@ -216,7 +216,7 @@ customLayout = onWorkspace (getWorkspaceId "main") mainL
                                  , activeColor = "#799500"
                                  , activeBorderColor = "#799500"
                                  , activeTextColor = "#000000"
-                                 , inactiveBorderColor = "#606060"
+                                 , inactiveBorderColor = "#444444"
                                  , inactiveColor = "#606060"
                                  , inactiveTextColor = "#000000"
                                  , urgentColor = "#ff0000"

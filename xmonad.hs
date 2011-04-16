@@ -231,14 +231,14 @@ terminal' = "urxvtc"
 
 -- Dmenu stuffs --
 myBarFont :: String
-myBarFont = "-*-profont-*-*-*-*-11-*-*-*-*-*-*-*"
+myBarFont = "Pragmata:pixelsize=12"
 
 myFocsFG, myFocsBG :: String
 myFocsFG = "#000000" -- focused foreground colour
-myFocsBG = "#999999" -- focused background colour
+myFocsBG = "#CAA800" -- focused background colour
 
 myNormFG, myNormBG :: String
-myNormFG = "#8ba574" -- normal foreground colour
+myNormFG = "#9ABD02" -- normal foreground colour
 myNormBG = "#000000" -- normal background colour
 
 myDmenuCmd :: String

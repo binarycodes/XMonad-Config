@@ -63,7 +63,7 @@ main = do
 
 -------------------------------------------------------------------------------
 -- Dzen --
-myDzenFont = "Pragmata:pixelsize=12"
+myDzenFont = "Corbel Bold:pixelsize=12:antialias=true:hinting=true"
 myDzenEvents = "-e 'button3='"
 myWorkspaceBar = "dzen2 -p -ta l -fn '" ++ myDzenFont ++ "' -w 1100 -bg '#404040' -fg '#000000' "
                  ++ myDzenEvents 
@@ -78,6 +78,7 @@ manageHook' = myManageHook <+> manageHook defaultConfig <+> manageDocks <+> (doF
 myManageHook = composeAll $ concat
              [ [ stringProperty "WM_WINDOW_ROLE" =? roleC --> doIgnore | roleC <- hide ]
              , [ className =? webC --> doF (W.shift $ getWorkspaceId "web")  | webC <- web ]
+             , [ className =? officeC --> doF (W.shift $ getWorkspaceId "office") | officeC <- office ]
              , [ className =? mailC --> doF (W.shift $ getWorkspaceId "mail") | mailC <- mail ]
              , [ className =? docC --> doF (W.shift $ getWorkspaceId "doc")  | docC <- doc ]
              , [ className =? codeC --> doF (W.shift $ getWorkspaceId "code") | codeC <- code ]
@@ -92,6 +93,7 @@ myManageHook = composeAll $ concat
                    float = [ "Gimp" , "Blender" ]
                    mail = [ "Lanikai", "Liferea-bin" ]
                    down = [ "Transmission", "Deluge", "Download" ]
+                   office = [ "libreoffice-calc", "libreoffice-startcenter", "LibreOffice 3.3" ]
                    hide = [ ]
 
 
@@ -205,7 +207,7 @@ customLayout = onWorkspace (getWorkspaceId "main") mainL
           webL  = applyToAllLayouts (Full ||| mt ||| tiled ||| tb)
           docL  = applyToAllLayouts (mt ||| tiled ||| Full ||| tb)
           codeL = applyToAllLayouts (combo ||| tiled ||| mt ||| Full ||| Grid)
-          chatL = applyToAllLayouts $ im (Grid ||| mt ||| threeCol ||| tiled)
+          chatL = applyToAllLayouts $ im (Grid ||| mt ||| threeCol ||| tiled ||| sFloat)
           floatL = applyToAllLayouts (sFloat ||| mt ||| threeCol ||| tiled)
           officeL = applyToAllLayouts (tp ||| tiled ||| rft ||| mt)
           restL = applyToAllLayouts (tiled ||| Full ||| Grid ||| mt)
@@ -231,7 +233,7 @@ terminal' = "urxvtc"
 
 -- Dmenu stuffs --
 myBarFont :: String
-myBarFont = "Pragmata:pixelsize=12"
+myBarFont = myDzenFont
 
 myFocsFG, myFocsBG :: String
 myFocsFG = "#000000" -- focused foreground colour

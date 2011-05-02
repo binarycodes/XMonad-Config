@@ -1,6 +1,6 @@
 history
 xmonad.errors
-xmonad.hi
+*.hi
 xmonad.hs.backup
 xmonad-i386-linux
-xmonad.o
+*.o

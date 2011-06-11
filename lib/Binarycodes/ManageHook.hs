@@ -9,6 +9,7 @@ import qualified XMonad.StackSet as W
 
 -- Hooks
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 
 -- Layout
 import XMonad.Layout.PerWorkspace (onWorkspace)
@@ -31,6 +32,7 @@ myManageHook = composeAll $ concat
              , [ className =? chatC --> doF (W.shift $ getWorkspaceId "chat") | chatC <- chat ]
              , [ className =? floatC --> doF (W.shift $ getWorkspaceId "float") | floatC <- float ]
              , [ className =? downC --> doF (W.shift $ getWorkspaceId "down") | downC <- down ]
+             , [ isDialog --> doIgnore ]
              ]
              where web  = [ "Namoroka", "Jumanji", "Opera", "Firefox", "Chromium", "Kazehakase" ]
                    doc  = [ "GV" ,"Evince", "Xchm", "Epdfview", "Zathura", "Chmsee" ]

@@ -20,7 +20,7 @@ import Binarycodes.Workspaces
 
 -- Hooks --
 manageHook' :: ManageHook
-manageHook' = myManageHook <+> manageHook defaultConfig <+> manageDocks <+> (doF W.swapDown)
+manageHook' = myManageHook <+> manageHook defaultConfig <+> manageDocks
 
 myManageHook = composeAll $ concat
              [ [ stringProperty "WM_WINDOW_ROLE" =? roleC --> doIgnore | roleC <- hide ]
@@ -32,7 +32,6 @@ myManageHook = composeAll $ concat
              , [ className =? chatC --> doF (W.shift $ getWorkspaceId "chat") | chatC <- chat ]
              , [ className =? floatC --> doF (W.shift $ getWorkspaceId "float") | floatC <- float ]
              , [ className =? downC --> doF (W.shift $ getWorkspaceId "down") | downC <- down ]
-             , [ isDialog --> doIgnore ]
              ]
              where web  = [ "Namoroka", "Jumanji", "Opera", "Firefox", "Chromium", "Kazehakase" ]
                    doc  = [ "GV" ,"Evince", "Xchm", "Epdfview", "Zathura", "Chmsee" ]

@@ -22,6 +22,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.SetWMName
 import XMonad.ManageHook
+import XMonad.Hooks.EwmhDesktops
 
 -- layouts
 import XMonad.Layout.NoBorders
@@ -62,7 +63,7 @@ main = do
               , logHook = logHook' bar
               , layoutHook = layoutHook'
               , manageHook = manageHook'
-              , startupHook = setWMName "LG3D"
+              , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"
               }
 
 
@@ -100,7 +101,7 @@ layoutHook' = onWorkspace (getWorkspaceId "main") mainL
                                          windowNavigation layoutList
 
           mainL = applyToAllLayouts (combo ||| tiled ||| rft ||| Grid ||| mt ||| Full)
-          webL  = applyToAllLayouts (Full ||| mt ||| tiled ||| tb)
+          webL  = applyToAllLayouts (tiled ||| Full ||| mt ||| tb)
           docL  = applyToAllLayouts (mt ||| tiled ||| Full ||| tb)
           codeL = applyToAllLayouts (combo ||| tiled ||| mt ||| Full ||| Grid)
           chatL = applyToAllLayouts $ im (Grid ||| mt ||| threeCol ||| tiled ||| sFloat)

@@ -34,7 +34,7 @@ urgentBG = "#FF0000"
 
 
 -- Dzen --
-myDzenFont = "Corbel Bold:pixelsize=12:antialias=true:hinting=true"
+myDzenFont = "Envy Code R:pixelsize=13"
 myDzenEvents = "-e 'button3='"
 myWorkspaceBar = "dzen2 -p -ta l -fn '" ++ myDzenFont ++ "' -w 1100 -bg '#404040' -fg '#000000' "
                  ++ myDzenEvents 

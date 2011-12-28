@@ -10,7 +10,7 @@ import XMonad
 
 -- workspaces
 workspaceNames :: [String]
-workspaceNames = [ "main", "web", "chat", "doc", "code", "mail", "office", "down", "float" ]
+workspaceNames = [ "main", "web", "chat", "doc", "code", "mult", "office", "down", "float" ]
 
 -- custom program to add space before/after every element of a list of strings
 addSpace :: [String] -> [String]

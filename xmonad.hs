@@ -86,7 +86,8 @@ layoutHook' = onWorkspace (getWorkspaceId "main") mainL
           sFloat = named "SF" $ simplestFloat
           mt = named "MT" $ Mirror tiled
           tp = named "TP" $ TwoPane (3/100) (1/2)
-
+          web = named "WEB" $  ResizableTall 1 (1/100) (2/3) []
+          
           im layoutL = named "IM" $ withIM ratio pidginRoster $ reflectHoriz $ withIM
                skypeRatio skypeRoster layoutL
           ratio = (1%9)
@@ -101,7 +102,7 @@ layoutHook' = onWorkspace (getWorkspaceId "main") mainL
                                          windowNavigation layoutList
 
           mainL = applyToAllLayouts (combo ||| tiled ||| rft ||| Grid ||| mt ||| Full)
-          webL  = applyToAllLayouts (tiled ||| Full ||| mt ||| tb)
+          webL  = applyToAllLayouts (web ||| tiled ||| Full ||| mt ||| tb)
           docL  = applyToAllLayouts (mt ||| tiled ||| Full ||| tb)
           codeL = applyToAllLayouts (combo ||| tiled ||| mt ||| Full ||| Grid)
           chatL = applyToAllLayouts $ im (Grid ||| mt ||| threeCol ||| tiled ||| sFloat)
@@ -110,8 +111,8 @@ layoutHook' = onWorkspace (getWorkspaceId "main") mainL
           restL = applyToAllLayouts (tiled ||| Full ||| Grid ||| mt)
 
           --- My Theme For Tabbed layout
-          myTheme = defaultTheme { decoHeight = 18
-                                 , fontName = "xft:Pragmata:pixelsize=12"
+          myTheme = defaultTheme { decoHeight = 14
+                                 , fontName = "-*-envy code r-medium-r-*-*-12-*-*-*-*-*-iso8859-*"
                                  , activeColor = "#799500"
                                  , activeBorderColor = "#799500"
                                  , activeTextColor = "#000000"

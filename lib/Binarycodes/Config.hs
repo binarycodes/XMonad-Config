@@ -34,7 +34,7 @@ urgentBG = "#FF0000"
 
 
 -- Dzen --
-myDzenFont = "-*-envy code r-medium-r-*-*-12-*-*-*-*-*-iso8859-*"
+myDzenFont = "-*-envy code r-medium-r-*-*-11-*-*-*-*-*-iso8859-*"
 myDzenEvents = "-e 'button3='"
 myWorkspaceBar = "dzen2 -p -ta l -fn '" ++ myDzenFont ++ "' -w 1100 -bg '#404040' -fg '#000000' "
                  ++ myDzenEvents 

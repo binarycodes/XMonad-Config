@@ -6,11 +6,11 @@ module Binarycodes.Workspaces where
 -- XMonad
 
 import XMonad
-
+import Data.Char
 
 -- workspaces
 workspaceNames :: [String]
-workspaceNames = [ "main", "web", "chat", "doc", "code", "mult", "office", "down", "float" ]
+workspaceNames = [ "MAIN", "WEB", "CHAT", "DOC", "CODE", "MULT", "OFFICE", "DOWN", "FLOAT" ]
 
 -- custom program to add space before/after every element of a list of strings
 addSpace :: [String] -> [String]
@@ -24,6 +24,6 @@ workspaces' = addSpace $ zipWith (++) (map show [1..]) wsnames
               
 
 getWorkspaceId :: String -> WorkspaceId
-getWorkspaceId name = case lookup name (zip workspaceNames workspaces') of
+getWorkspaceId name = case lookup (map toUpper name) (zip workspaceNames workspaces') of
                         Just wsId -> wsId
                         Nothing -> head workspaces'

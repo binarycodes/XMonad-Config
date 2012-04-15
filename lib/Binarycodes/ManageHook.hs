@@ -24,7 +24,9 @@ manageHook' = myManageHook <+> manageHook defaultConfig <+> manageDocks
 
 myManageHook = composeOne $ concat
              [ [ stringProperty "WM_WINDOW_ROLE" =? roleC -?> doIgnore | roleC <- hide ]
+             , [ className =? c -?> doFloat | c <- noTile ]
              , [ isDialog -?> doFloat ]
+             , [ isFullscreen -?> doFullFloat ]
              , [ className =? webC -?> doF (W.shift $ getWorkspaceId "web")  | webC <- web ]
              , [ className =? officeC -?> doF (W.shift $ getWorkspaceId "office") | officeC <- office ]
              , [ className =? multC -?> doF (W.shift $ getWorkspaceId "mult") | multC <- mult ]
@@ -46,5 +48,6 @@ myManageHook = composeOne $ concat
                    mult = [ "Shotwell", "Gimp-2.7" ]
                    down = [ "Transmission", "Deluge" ]
                    office = [ "libreoffice-calc", "libreoffice-startcenter", "LibreOffice 3.3" ]
+                   noTile = [ "mplayer2", "xv" ]
                    hide = [ ]
                    sink = [ ]

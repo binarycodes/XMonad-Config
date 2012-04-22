@@ -19,6 +19,7 @@ import XMonad.Util.Run (spawnPipe)
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.Man
+import XMonad.Prompt.Window
 
 -- Layouts
 import XMonad.Layout.WindowNavigation
@@ -44,6 +45,10 @@ keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask,               xK_F2    ), shellPrompt defaultXPConfig)
     , ((modMask,               xK_F1    ), manPrompt defaultXPConfig)
+    , ((modMask .|. shiftMask, xK_g     ), windowPromptGoto defaultXPConfig)
+    , ((modMask .|. shiftMask, xK_b     ), windowPromptBring defaultXPConfig)
+
+    -- kill
     , ((modMask .|. shiftMask, xK_c     ), kill)
 
     -- layouts

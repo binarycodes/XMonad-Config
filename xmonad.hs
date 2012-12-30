@@ -101,7 +101,7 @@ layoutHook' = onWorkspace (getWorkspaceId "main") mainL
           applyToAllLayouts layoutList = avoidStruts $ smartBorders $
                                          windowNavigation layoutList
 
-          mainL = applyToAllLayouts (combo ||| tiled ||| rft ||| Grid ||| mt ||| Full)
+          mainL = applyToAllLayouts (tiled ||| combo ||| rft ||| Grid ||| mt ||| Full)
           webL  = applyToAllLayouts (web ||| tiled ||| Full ||| mt ||| tb)
           docL  = applyToAllLayouts (mt ||| tiled ||| Full ||| tb)
           codeL = applyToAllLayouts (combo ||| tiled ||| mt ||| Full ||| Grid)

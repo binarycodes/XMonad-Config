@@ -38,9 +38,9 @@ myManageHook = composeOne $ concat
              , [ className =? sinkC -?> unFloat | sinkC <- sink ]
              , [ return True -?> doF W.swapDown ]
              ]
-             where 
+             where
                    unFloat = ask >>= doF . W.sink
-                   web  = [ "Namoroka", "Jumanji", "Opera", "Firefox", "Chromium", "Kazehakase" ]
+                   web  = [ "Namoroka", "Jumanji", "Opera", "Firefox", "Chromium", "Kazehakase", "Dwb" ]
                    doc  = [ "GV" ,"Evince", "Xchm", "Epdfview", "Zathura", "Chmsee" ]
                    code = [ "Netbeans" ]
                    chat = [ "Pidgin","Qq" ]

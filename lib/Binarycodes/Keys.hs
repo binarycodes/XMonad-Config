@@ -88,7 +88,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. controlMask, xK_Left ), sendMessage $ Swap L)
     , ((modMask .|. controlMask, xK_Up   ), sendMessage $ Swap U)
     , ((modMask .|. controlMask, xK_Down ), sendMessage $ Swap D)
-      
+
     -- move
     , ((modMask .|. shiftMask, xK_Right), sendMessage $ Move R)
     , ((modMask .|. shiftMask, xK_Left ), sendMessage $ Move L)
@@ -97,7 +97,6 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- quit, or restart
     , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    --, ((modMask              , xK_q     ), restart "xmonad" True)
     , ((modMask              , xK_q     ), spawn myRestart)
 
     ]

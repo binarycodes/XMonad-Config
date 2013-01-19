@@ -87,7 +87,7 @@ layoutHook' = onWorkspace (getWorkspaceId "main") mainL
           mt = named "MT" $ Mirror tiled
           tp = named "TP" $ TwoPane (3/100) (1/2)
           web = named "WEB" $  ResizableTall 1 (1/100) (2/3) []
-          
+
           im layoutL = named "IM" $ withIM ratio pidginRoster $ reflectHoriz $ withIM
                skypeRatio skypeRoster layoutL
           ratio = (1%9)
@@ -101,14 +101,14 @@ layoutHook' = onWorkspace (getWorkspaceId "main") mainL
           applyToAllLayouts layoutList = avoidStruts $ smartBorders $
                                          windowNavigation layoutList
 
-          mainL = applyToAllLayouts (tiled ||| combo ||| rft ||| Grid ||| mt ||| Full)
-          webL  = applyToAllLayouts (web ||| tiled ||| Full ||| mt ||| tb)
-          docL  = applyToAllLayouts (mt ||| tiled ||| Full ||| tb)
-          codeL = applyToAllLayouts (combo ||| tiled ||| mt ||| Full ||| Grid)
+          mainL = applyToAllLayouts (tiled ||| combo ||| rft ||| Grid ||| mt ||| Full ||| sFloat)
+          webL  = applyToAllLayouts (web ||| tiled ||| Full ||| mt ||| tb ||| sFloat)
+          docL  = applyToAllLayouts (mt ||| tiled ||| Full ||| tb ||| sFloat)
+          codeL = applyToAllLayouts (combo ||| tiled ||| mt ||| Full ||| Grid ||| sFloat)
           chatL = applyToAllLayouts $ im (Grid ||| mt ||| threeCol ||| tiled ||| sFloat)
           floatL = applyToAllLayouts (sFloat ||| mt ||| threeCol ||| tiled)
-          officeL = applyToAllLayouts (tp ||| tiled ||| rft ||| mt)
-          restL = applyToAllLayouts (tiled ||| Full ||| Grid ||| mt)
+          officeL = applyToAllLayouts (tp ||| tiled ||| rft ||| mt ||| sFloat)
+          restL = applyToAllLayouts (tiled ||| Full ||| Grid ||| mt ||| sFloat)
 
           --- My Theme For Tabbed layout
           myTheme = defaultTheme { decoHeight = 14
@@ -123,4 +123,3 @@ layoutHook' = onWorkspace (getWorkspaceId "main") mainL
                                  , urgentBorderColor = "#ff0000"
                                  , urgentTextColor = "#000000"
                                  }
-

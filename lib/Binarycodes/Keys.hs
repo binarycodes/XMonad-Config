@@ -96,8 +96,8 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_Down ), sendMessage $ Move D)
 
     -- quit, or restart
-    , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-    , ((modMask              , xK_q     ), spawn myRestart)
+    , ((modMask .|. controlMask, xK_q     ), io (exitWith ExitSuccess))
+    , ((modMask                , xK_q     ), spawn myRestart)
 
     ]
     ++

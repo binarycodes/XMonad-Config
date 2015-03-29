@@ -107,7 +107,7 @@ layoutHook' = onWorkspace (getWorkspaceId "main") mainL
           codeL = applyToAllLayouts (combo ||| tiled ||| mt ||| Full ||| Grid ||| sFloat)
           chatL = applyToAllLayouts $ im (Grid ||| mt ||| threeCol ||| tiled ||| sFloat)
           floatL = applyToAllLayouts (sFloat ||| mt ||| threeCol ||| tiled)
-          officeL = applyToAllLayouts (tp ||| tiled ||| rft ||| mt ||| sFloat)
+          officeL = applyToAllLayouts (tb ||| tiled ||| rft ||| mt ||| sFloat)
           restL = applyToAllLayouts (tiled ||| Full ||| Grid ||| mt ||| sFloat)
 
           --- My Theme For Tabbed layout

@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleContexts #-}
 -- xmonad.hs
 -- Author: sujoy `binarycodes` <sujoy@archlinux.us>
 --

@@ -40,7 +40,7 @@ myManageHook = composeOne $ concat
              ]
              where
                    unFloat = ask >>= doF . W.sink
-                   web  = [ "Namoroka", "Jumanji", "Opera", "Firefox", "Addons", "Chromium", "Kazehakase", "Dwb" ]
+                   web  = [ "Namoroka", "Jumanji", "Opera", "Firefox", "Addons", "chromium", "Kazehakase", "Dwb" ]
                    doc  = [ "GV" ,"Evince", "Xchm", "Epdfview", "Zathura", "Chmsee" ]
                    code = [ "Netbeans", "Eclipse" ]
                    chat = [ "Pidgin","Qq" ]

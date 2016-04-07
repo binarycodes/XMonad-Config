@@ -65,6 +65,7 @@ main = do
               , layoutHook = layoutHook'
               , manageHook = manageHook'
               , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"
+              , handleEventHook = fullscreenEventHook
               }
 
 

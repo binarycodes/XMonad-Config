@@ -20,7 +20,13 @@ import Binarycodes.Workspaces
 
 -- Hooks --
 manageHook' :: ManageHook
-manageHook' = myManageHook <+> manageHook defaultConfig <+> manageDocks
+manageHook' = composeAll [
+  myManageHook,
+  manageHook defaultConfig,
+  manageDocks,
+  isFullscreen --> doFullFloat
+  ]
+
 
 myManageHook = composeOne $ concat
              [ [ stringProperty "WM_WINDOW_ROLE" =? roleC -?> doIgnore | roleC <- hide ]
@@ -40,7 +46,7 @@ myManageHook = composeOne $ concat
              ]
              where
                    unFloat = ask >>= doF . W.sink
-                   web  = [ "Namoroka", "Jumanji", "Opera", "Firefox", "Addons", "chromium", "Kazehakase", "Dwb" ]
+                   web  = [ "Seamonkey", "qutebrowser", "Opera", "Firefox", "Addons", "chromium", "Chromium" ]
                    doc  = [ "GV" ,"Evince", "Xchm", "Epdfview", "Zathura", "Chmsee" ]
                    code = [ "Netbeans", "Eclipse" ]
                    chat = [ "Pidgin","Qq" ]

@@ -13,15 +13,15 @@ import XMonad (Dimension)
 -- Settings for the status bars
 
 currentFG = "#000000"
-currentBG = "#9ABD02"
+currentBG = "#B4D32C"
 
 hiddenFG = "#000000"
-hiddenBG = "#CAA800"
+hiddenBG = "#979E2E"
 
 hiddenNoWinFG = "#000000"
 hiddenNoWinBG = "#606060"
 
-titleFG = "#FFA662"
+titleFG = "#43F67C"
 titleBG = "#404040"
 
 layoutFG = "#000000"
@@ -36,9 +36,9 @@ urgentBG = "#FF0000"
 -- Dzen --
 myDzenFont = "-*-droid sans mono-*-r-*-*-10-*-*-*-*-*-iso8859-*"
 myDzenEvents = "-e 'button3='"
-myWorkspaceBar = "dzen2 -p -ta l -fn '" ++ myDzenFont ++ "' -w 1100 -bg '#404040' -fg '#000000' "
+myWorkspaceBar = "dzen2 -dock -p -ta l -fn '" ++ myDzenFont ++ "' -w 1100 -bg '#404040' -fg '#000000' "
                  ++ myDzenEvents 
-myConkyBar = "dzen2 -p -ta r -fn '" ++ myDzenFont ++ "' -x 1100 -w 820 -bg '#404040' -fg '#000000' " 
+myConkyBar = "dzen2 -dock -p -ta r -fn '" ++ myDzenFont ++ "' -x 1100 -w 820 -bg '#404040' -fg '#000000' " 
              ++ myDzenEvents
 
 -- borders
@@ -51,4 +51,4 @@ focusedBorderColor' = currentBG
 
 -- Terminal --
 terminal' :: String
-terminal' = "urxvtc" -- since we already start the urxvt daemon from xinitrc
+terminal' = "termite" -- since we already start the urxvt daemon from xinitrc

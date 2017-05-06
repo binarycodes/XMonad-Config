@@ -52,7 +52,7 @@ import Binarycodes.Workspaces
 main = do
        bar <- spawnPipe myWorkspaceBar
        spawn ("conky -c ~/.xmonad/dzenConky.rc | "++myConkyBar)
-       xmonad $ withUrgencyHook NoUrgencyHook
+       xmonad $docks $ withUrgencyHook NoUrgencyHook
               $ defaultConfig
               { workspaces = workspaces'
               , modMask = modMask'
@@ -62,10 +62,10 @@ main = do
               , terminal = terminal'
               , keys = keys'
               , logHook = logHook' bar
+              , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook 
               , layoutHook = layoutHook'
               , manageHook = manageHook'
               , startupHook = ewmhDesktopsStartup >> setWMName "LG3D"
-              , handleEventHook = fullscreenEventHook
               }
 
 
